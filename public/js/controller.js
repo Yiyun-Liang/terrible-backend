@@ -54,7 +54,7 @@ app.controller("LeaderboardCtrl", function($scope, mySocket) {
 	mySocket.on("leaderboard", function(data) {
 		console.log(data);
 		$scope.leaders = data.slice(0,3);
-		$scope.losers = data.slice(3,11);
+		$scope.losers = data.slice(3,16);
 	});
 });
 

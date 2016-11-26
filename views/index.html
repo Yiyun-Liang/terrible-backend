@@ -24,41 +24,53 @@
 
   
 
-  <div id="container">
+  <div class="container">
 
-  </div>
+
 
     <h1 class = "centered-text">Anger Leaderboard</h1>
     <div ng-controller="LeaderboardCtrl as lbCt">
     <div class = "row">
     	<div class="col col-md-4 " ng-repeat="leader in leaders">
     	<div class = "center-block">
-			<h4 class = "centered-text">{{$index+1}}</h4>
-			<h4 class = "centered-text">{{leader.name}}</h4>
-			<p>http://127.0.0.1:3000/{{leader.url}}</p>
+			<h2 class = "centered-text">{{$index+1}}</h2>
+			<h2 class = "centered-text">{{leader.name}}</h2>
 			<img ng-src="http://127.0.0.1:3000/{{leader.url}}"/>
+			<p class = "centered-text">{{leader.value}}</p>
 		</div>
     	</div>
     </div>
     <div class = "row">
     	<div class="col col-md-2 center-block" ng-repeat="loser in losers">
-			<h5 class = "centered-text">{{$index + 4}}</h5>
-			<h5 class = "centered-text">{{loser.name}}</h5>
+			<h4 class = "centered-text">{{$index + 4}}</h4>
+			<h4 class = "centered-text">{{loser.name}}</h4>
 			<img ng-src="http://127.0.0.1:3000/{{loser.url}}"/>
+			<p class = "centered-text">{{loser.value}}</p>
     	</div>
     </div>
     </div>
     </div>
+ 
 
-
+<div class = "container">
     <div ng-controller="CamCtrl as cCt">
-    <input type="text" ng-model="user.name"></input>
-    <video autoplay></video>
-	    <button ng-click="snapshot()">Take snapshot</button>
-	     <p id="result">Result:</p>
-	    <canvas></canvas>
+    <div class = "row centered-text">
+
+    <div class="form-group">
+  <label>Name:</label>
+  <input type="text" class="form-control" ng-model="user.name">
+</div>
+
     </div>
 
+    <video class ="col col-md-6" autoplay></video>
+	    
+	    
+	    <canvas class ="col col-md-6"></canvas>
+	     <p id="result">Result:</p>
+	    <button ng-click="snapshot()">Take snapshot</button>
+    </div>
+</div>
 
 
 

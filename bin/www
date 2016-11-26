@@ -36,7 +36,27 @@ io.on('connection', function(socket){
    var userid = socket.id;
    var results = [];
 
-   socket.emit('leaderboard', results);
+   pg.connect(connectionString, function(err, client, done) {
+     // Handle connection errors
+     if(err) {
+      done();
+      console.log('errrrrr: '+err);
+     }
+
+     var query = client.query('SELECT * FROM items ORDER BY rank ASC');
+     query.on('row', function(row) {
+        results.push(row);
+     });
+      // After all data is returned, close connection and return results
+
+     query.on('end', () => {
+        socket.emit('leaderboard', results);
+        done();
+        // do something with the results
+        console.log(results)
+     });
+   });
+
    console.log('dummy user connected');
    socket.emit('hello', 'System Broadcast Message: a dummy user has been connected');
    socket.on('disconnect', function(){
