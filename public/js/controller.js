@@ -7,55 +7,55 @@ app.factory('mySocket', function (socketFactory) {
 });
 
 app.controller("LeaderboardCtrl", function($scope, mySocket) {
-	var data = [
-		{name: "aaa",
-	     URL: "http://placekitten.com/600/600",
-	     score:"99"},
-	    {name: "aaa",
-	     URL: "http://placekitten.com/600/600",
-	     score:"99"},
-	     {name: "aaa",
-	     URL: "http://placekitten.com/600/600",
-	     score:"99"},
-	     {name: "aaa",
-	     URL: "http://placekitten.com/200/200",
-	     score:"99"},
-	     {name: "aaa",
-	     URL: "http://placekitten.com/200/200",
-	     score:"99"},
-	     {name: "aaa",
-	     URL: "http://placekitten.com/200/200",
-	     score:"99"},
-	     {name: "aaa",
-	     URL: "http://placekitten.com/200/200",
-	     score:"99"},
-	     {name: "aaa",
-	     URL: "http://placekitten.com/200/200",
-	     score:"99"},
-	     {name: "aaa",
-	     URL: "http://placekitten.com/200/200",
-	     score:"99"},
-	     {name: "aaa",
-	     URL: "http://placekitten.com/200/200",
-	     score:"99"},
-	     {name: "aaa",
-	     URL: "http://placekitten.com/200/200",
-	     score:"99"},
-	     {name: "aaa",
-	     URL: "http://placekitten.com/200/200",
-	     score:"99"},
-	     {name: "aaa",
-	     URL: "http://placekitten.com/200/200",
-	     score:"99"},
+	// var data = [
+	// 	{name: "aaa",
+	//      URL: "http://placekitten.com/600/600",
+	//      score:"99"},
+	//     {name: "aaa",
+	//      URL: "http://placekitten.com/600/600",
+	//      score:"99"},
+	//      {name: "aaa",
+	//      URL: "http://placekitten.com/600/600",
+	//      score:"99"},
+	//      {name: "aaa",
+	//      URL: "http://placekitten.com/200/200",
+	//      score:"99"},
+	//      {name: "aaa",
+	//      URL: "http://placekitten.com/200/200",
+	//      score:"99"},
+	//      {name: "aaa",
+	//      URL: "http://placekitten.com/200/200",
+	//      score:"99"},
+	//      {name: "aaa",
+	//      URL: "http://placekitten.com/200/200",
+	//      score:"99"},
+	//      {name: "aaa",
+	//      URL: "http://placekitten.com/200/200",
+	//      score:"99"},
+	//      {name: "aaa",
+	//      URL: "http://placekitten.com/200/200",
+	//      score:"99"},
+	//      {name: "aaa",
+	//      URL: "http://placekitten.com/200/200",
+	//      score:"99"},
+	//      {name: "aaa",
+	//      URL: "http://placekitten.com/200/200",
+	//      score:"99"},
+	//      {name: "aaa",
+	//      URL: "http://placekitten.com/200/200",
+	//      score:"99"},
+	//      {name: "aaa",
+	//      URL: "http://placekitten.com/200/200",
+	//      score:"99"},
 
-	];
-	$scope.leaders = data.slice(0,3);
-	$scope.losers = data.slice(3,15);
-	// mySocket.on("leaderboard", function(data) {
-
-	// 	$scope.leaders = data.slice(0,3);
-	// 	$scope.losers = data.slice(3,11);
-	// });
+	// ];
+	// $scope.leaders = data.slice(0,3);
+	// $scope.losers = data.slice(3,15);
+	mySocket.on("leaderboard", function(data) {
+		console.log(data);
+		$scope.leaders = data.slice(0,3);
+		$scope.losers = data.slice(3,11);
+	});
 });
 
 
