@@ -35,7 +35,8 @@
     	<div class = "center-block">
 			<h4 class = "centered-text">{{$index+1}}</h4>
 			<h4 class = "centered-text">{{leader.name}}</h4>
-			<img ng-src="http://127.0.0.1:3000/{{leader.URL}}"/>
+			<p>http://127.0.0.1:3000/{{leader.url}}</p>
+			<img ng-src="http://127.0.0.1:3000/{{leader.url}}"/>
 		</div>
     	</div>
     </div>
@@ -43,7 +44,7 @@
     	<div class="col col-md-2 center-block" ng-repeat="loser in losers">
 			<h5 class = "centered-text">{{$index + 4}}</h5>
 			<h5 class = "centered-text">{{loser.name}}</h5>
-			<img ng-src="{{http://127.0.0.1:3000/loser.URL}}"/>
+			<img ng-src="http://127.0.0.1:3000/{{loser.url}}"/>
     	</div>
     </div>
     </div>
