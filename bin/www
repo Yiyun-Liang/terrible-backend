@@ -54,7 +54,7 @@ io.on('connection', function(socket){
      console.log('It\'s saved!');
 
      // save user data to database
-     pg.connect(connectionString, (err, client, done) => {
+     pg.connect(connectionString, function(err, client, done) {
        // Handle connection errors
        if(err) {
         done();
@@ -67,17 +67,19 @@ io.on('connection', function(socket){
        // SQL Query > Select Data
        var query = client.query('SELECT * FROM items ORDER BY rank ASC');
        // Stream results back one row at a time
-       query.on('row', (row) => {
+       query.on('row', function(row) {
           results.push(row);
        });
         // After all data is returned, close connection and return results
-       query.on('end', () => {
+       query.on('end', function() {
+          socket.emit('leaderboard', results);
           done();
           // do something with the results
           console.log(results)
        });
      });
-  });
+
+    });
 });
 
 server.listen(port, function(){
