@@ -53,6 +53,7 @@ app.controller("LeaderboardCtrl", function($scope, mySocket) {
 	// $scope.losers = data.slice(3,15);
 	mySocket.on("leaderboard", function(data) {
 		console.log(data);
+		data.sort((a,b) => b.value - a.value);
 		$scope.leaders = data.slice(0,3);
 		$scope.losers = data.slice(3,16);
 	});
