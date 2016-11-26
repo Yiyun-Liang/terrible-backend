@@ -33,7 +33,7 @@ var io = require('socket.io').listen(server);
  */
 
 io.on('connection', function(socket){
-   var userid = socket.id;
+   //var userid = socket.id;
    var results = [];
 
    pg.connect(connectionString, function(err, client, done) {
@@ -65,6 +65,7 @@ io.on('connection', function(socket){
 
    socket.on('image', function(obj){
      var img = obj.image;
+     var userid = randomString();
      var username = obj.name;
      var userresult = obj.result;
 
@@ -116,6 +117,15 @@ server.on('listening', onListening);
 /**
  * Normalize a port into a number, string, or false.
  */
+
+function randomString() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for(var i = 0; i < 15; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+}
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
