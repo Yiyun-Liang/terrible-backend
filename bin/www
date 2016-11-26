@@ -34,8 +34,6 @@ var io = require('socket.io').listen(server);
 
 io.on('connection', function(socket){
    var userid = socket.id;
-   var username = 'isa';
-   var uservalue = 0.00003410340;
    var results = [];
 
    console.log('dummy user connected');
@@ -46,12 +44,17 @@ io.on('connection', function(socket){
 
    socket.on('image', function(obj){
      var img = obj.image;
+     var username = obj.name;
+     var userresult = obj.result;
+
      var ext = img.split(';')[0].match(/jpeg|png|gif/)[0];
      var data = img.replace(/^data:image\/\w+;base64,/, "");
      var buf = new Buffer(data, 'base64');
      var filepath = 'public/images/' + userid + '.' + ext
      fs.writeFile('public/images/' + userid + '.' + ext, buf);
      console.log('It\'s saved!');
+
+     var uservalue = userresult[0].scores.anger
 
      // save user data to database
      pg.connect(connectionString, function(err, client, done) {
@@ -76,6 +79,7 @@ io.on('connection', function(socket){
           socket.emit('leaderboard', results);
           done();
           // do something with the results
+          console.log(results)
        });
      });
 
