@@ -72,12 +72,14 @@ io.on('connection', function(socket){
        });
         // After all data is returned, close connection and return results
        query.on('end', () => {
+          socket.emit('leaderboard', results);
           done();
           // do something with the results
           console.log(results)
        });
      });
-  });
+
+    });
 });
 
 server.listen(port, function(){
