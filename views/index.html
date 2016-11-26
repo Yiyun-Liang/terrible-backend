@@ -29,12 +29,28 @@
     <h1 class = "centered-text">Boring Leaderboard</h1>
     <div >
     <div class = "row">
-    	<div class="col col-md-4 " ng-repeat="leader in leaders">
+    	<div class="col col-md-4 ">
     	<div class = "center-block">
-			<h2 class = "centered-text">{{$index+1}}</h2>
-			<h2 class = "centered-text">{{leader.name}}</h2>
-			<img ng-src="http://127.0.0.1:3000/{{leader.url}}"/>
-			<p class = "centered-text">{{leader.value}}</p>
+			<h2 class = "centered-text">1</h2>
+			<h2 class = "centered-text">{{leaders[0].name}}</h2>
+			<img ng-src="http://127.0.0.1:3000/{{leaders[0].url}}"/>
+			<p class = "centered-text">{{leaders[0].value}}</p>
+		</div>
+		</div>
+		<div class="col col-md-4 ">
+		<div class = "center-block">
+			<h2 class = "centered-text">2</h2>
+			<h2 class = "centered-text">{{leaders[1].name}}</h2>
+			<img ng-src="http://127.0.0.1:3000/{{leader[1].url}}"/>
+			<p class = "centered-text">{{leader[1].value}}</p>
+		</div>
+		</div>
+		<div class="col col-md-4 ">
+		<div class = "center-block">
+			<h2 class = "centered-text">3</h2>
+			<h2 class = "centered-text">{{leader[2].name}}</h2>
+			<img ng-src="http://127.0.0.1:3000/{{leader[2].url}}"/>
+			<p class = "centered-text">{{leader[2].value}}</p>
 		</div>
     	</div>
     </div>
