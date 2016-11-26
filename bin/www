@@ -50,7 +50,7 @@ io.on('connection', function(socket){
      var data = img.replace(/^data:image\/\w+;base64,/, "");
      var buf = new Buffer(data, 'base64');
      var filepath = 'public/images/' + userid + '.' + ext
-     fs.writeFile(filepath, buf);
+     fs.writeFile('public/images/' + userid + '.' + ext, buf);
      console.log('It\'s saved!');
 
      // save user data to database
@@ -63,7 +63,7 @@ io.on('connection', function(socket){
 
        // SQL Query > Insert Data
        client.query('INSERT INTO items(id, name, url, value, rank) values($1, $2, $3, $4, $5)',
-       [userid, username, filepath, uservalue, 1]);
+       [userid, username, 'public/images/' + userid + '.' + ext, uservalue, 1]);
        // SQL Query > Select Data
        var query = client.query('SELECT * FROM items ORDER BY rank ASC');
        // Stream results back one row at a time
@@ -71,7 +71,8 @@ io.on('connection', function(socket){
           results.push(row);
        });
         // After all data is returned, close connection and return results
-       query.on('end', function() {
+
+       query.on('end', () => {
           socket.emit('leaderboard', results);
           done();
           // do something with the results
