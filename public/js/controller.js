@@ -20,7 +20,7 @@ app.controller("CamCtrl", function($scope, mySocket) {
 		console.log (data);
 		$scope.test = data;
 	});
-});
+
 
 	$scope.snapshot = function() {
 		canvas.width = video.videoWidth;
