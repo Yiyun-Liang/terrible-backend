@@ -15,6 +15,8 @@ app.controller("LeaderboardCtrl", function($scope, mySocket) {
 
 
 app.controller("CamCtrl", function($scope, mySocket) {
+	$scope.user = {name:"Anonymous"};
+
 	mySocket.on("hello", function(data) {
 		console.log("AAAA");
 		console.log (data);
@@ -29,16 +31,20 @@ app.controller("CamCtrl", function($scope, mySocket) {
 		    drawImage(video, 0, 0, canvas.width, canvas.height);
 
 		  var canvasData = canvas.toDataURL("image/png");
-		   mySocket.emit("image", {image: canvasData});
+		   
 		  var base64ImageContent = canvasData.replace(/^data:image\/(png|jpg);base64,/, "");
 		  var blob = base64ToBlob(base64ImageContent, 'image/png');
 		    var ajax = new XMLHttpRequest();
 		    ajax.open("POST",'https://api.projectoxford.ai/emotion/v1.0/recognize',false);
 		    ajax.onreadystatechange = function() {
-		        console.log(ajax.responseText);
+		    	var resObj = JSON.parse(ajax.responseText);
+		        console.log(resObj);
 
+		        mySocket.emit("image", 
+		        	{ name:$scope.user.name,
+		        	image: canvasData,
+		            result: resObj});
 		        document.getElementById("result").innerHTML = ajax.responseText;
-
 		    }
 		    ajax.setRequestHeader('Content-Type', 'application/octet-stream');
 		    ajax.setRequestHeader('Ocp-Apim-Subscription-Key', 'ccba260c28864adcb6624df03085ab49');
