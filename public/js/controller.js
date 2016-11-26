@@ -28,13 +28,14 @@ app.controller("CamCtrl", function($scope, mySocket) {
 		    drawImage(video, 0, 0, canvas.width, canvas.height);
 
 		  var canvasData = canvas.toDataURL("image/png");
+		   mySocket.emit("image", {image: canvasData});
 		  var base64ImageContent = canvasData.replace(/^data:image\/(png|jpg);base64,/, "");
 		  var blob = base64ToBlob(base64ImageContent, 'image/png'); 
 		    var ajax = new XMLHttpRequest();
 		    ajax.open("POST",'https://api.projectoxford.ai/emotion/v1.0/recognize',false);
 		    ajax.onreadystatechange = function() {
 		        console.log(ajax.responseText);
-		        mySocket.emit("image", {image: ajax.responseText});
+
 		        document.getElementById("result").innerHTML = ajax.responseText;
 
 		    }
