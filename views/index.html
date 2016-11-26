@@ -24,15 +24,20 @@
 
     <h1>Anger Leaderboard</h1>
     <div ng-controller="LeaderboardCtrl as lbCt">
-		This should fuck:{{test.string}}
+		
+    </div>
+
+
+    <div ng-controller="CamCtrl as cCt">
+    <video autoplay></video>
+	    <button ng-click="snapshot()">Take snapshot</button>
+	     <p id="result">Result:</p>
+	    <canvas></canvas>
     </div>
 
 
 
-    <video autoplay></video>
-    <button>Take snapshot</button>
-     <p id="result">Result:</p>
-    <canvas></canvas>
+
    
 
   </div>
@@ -40,7 +45,7 @@
   <script src="bower_components/angular-socket-io/socket.min.js"</script>
   <script src="js/adapter.js"></script>
   <script src="js/common.js"></script>
-  <script src="js/main.js"></script>
+<!--   <script src="js/main.js"></script> -->
   <script src="js/ga.js"></script>
 <script src="js/controller.js"></script>
 </body>
