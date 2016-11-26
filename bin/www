@@ -11,6 +11,11 @@ var fs = require('fs');
 var pg = require('pg');
 var path = require('path');
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/user';
+var https = require('https');
+var options = {
+   key  : fs.readFileSync(__dirname + '/server.key'),
+   cert : fs.readFileSync(__dirname + '/server.crt')
+};
 
 
 /**
@@ -24,7 +29,7 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+var server = https.createServer(options, app);
 
 var io = require('socket.io').listen(server);
 
@@ -93,9 +98,8 @@ io.on('connection', function(socket){
        var query = client.query('SELECT * FROM items ORDER BY rank ASC');
        // Stream results back one row at a time
 
-       //query.on('row', function(row) {
        results.push({id: userid, name: username, rank:1, url:'images/' + userid + '.' + ext, value:uservalue});
-       //});
+
         // After all data is returned, close connection and return results
 
        query.on('end', () => {
