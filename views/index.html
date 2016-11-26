@@ -1,0 +1,47 @@
+<!doctype html>
+
+<html lang="en" ng-app="terrible">
+<head>
+  <meta charset="utf-8">
+
+  <title>Terrible</title>
+
+  <link rel="stylesheet" href="stylesheets/style.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+
+</head>
+
+<body>
+
+  
+
+  <div id="container">
+
+  <div id="lb">
+
+  </div>
+
+    <h1>Anger Leaderboard</h1>
+    <div ng-controller="LeaderboardCtrl as lbCt">
+		This should fuck:{{test}}
+    </div>
+
+
+
+    <video autoplay></video>
+    <button>Take snapshot</button>
+     <p id="result">Result:</p>
+    <canvas></canvas>
+   
+
+  </div>
+  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+  <script src="bower_components/angular-socket-io/socket.min.js"</script>
+  <script src="js/adapter.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ga.js"></script>
+<script src="js/controller.js"></script>
+</body>
+</html>
