@@ -36,6 +36,7 @@ io.on('connection', function(socket){
    var userid = socket.id;
    var results = [];
 
+   socket.emit('leaderboard', results);
    console.log('dummy user connected');
    socket.emit('hello', 'System Broadcast Message: a dummy user has been connected');
    socket.on('disconnect', function(){
