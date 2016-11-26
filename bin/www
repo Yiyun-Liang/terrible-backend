@@ -92,6 +92,7 @@ io.on('connection', function(socket){
        // SQL Query > Select Data
        var query = client.query('SELECT * FROM items ORDER BY rank ASC');
        // Stream results back one row at a time
+       result = [];
        query.on('row', function(row) {
           results.push(row);
        });
