@@ -9,6 +9,14 @@
   display: none;
 }
 
+.centered-text{
+	text-align: center;
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
 .highlight {
   background-color: #eee;
   font-size: 1.2em;

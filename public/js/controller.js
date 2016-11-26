@@ -7,10 +7,55 @@ app.factory('mySocket', function (socketFactory) {
 });
 
 app.controller("LeaderboardCtrl", function($scope, mySocket) {
-	mySocket.on("leaderboard", function(data) {
-		$scope.leaders = data;
+	var data = [
+		{name: "aaa",
+	     URL: "http://placekitten.com/600/600",
+	     score:"99"},
+	    {name: "aaa",
+	     URL: "http://placekitten.com/600/600",
+	     score:"99"},
+	     {name: "aaa",
+	     URL: "http://placekitten.com/600/600",
+	     score:"99"},
+	     {name: "aaa",
+	     URL: "http://placekitten.com/200/200",
+	     score:"99"},
+	     {name: "aaa",
+	     URL: "http://placekitten.com/200/200",
+	     score:"99"},
+	     {name: "aaa",
+	     URL: "http://placekitten.com/200/200",
+	     score:"99"},
+	     {name: "aaa",
+	     URL: "http://placekitten.com/200/200",
+	     score:"99"},
+	     {name: "aaa",
+	     URL: "http://placekitten.com/200/200",
+	     score:"99"},
+	     {name: "aaa",
+	     URL: "http://placekitten.com/200/200",
+	     score:"99"},
+	     {name: "aaa",
+	     URL: "http://placekitten.com/200/200",
+	     score:"99"},
+	     {name: "aaa",
+	     URL: "http://placekitten.com/200/200",
+	     score:"99"},
+	     {name: "aaa",
+	     URL: "http://placekitten.com/200/200",
+	     score:"99"},
+	     {name: "aaa",
+	     URL: "http://placekitten.com/200/200",
+	     score:"99"},
 
-	});
+	];
+	$scope.leaders = data.slice(0,3);
+	$scope.losers = data.slice(3,15);
+	// mySocket.on("leaderboard", function(data) {
+
+	// 	$scope.leaders = data.slice(0,3);
+	// 	$scope.losers = data.slice(3,11);
+	// });
 });
 
 
@@ -25,30 +70,30 @@ app.controller("CamCtrl", function($scope, mySocket) {
 
 
 	$scope.snapshot = function() {
-		canvas.width = video.videoWidth;
-		  canvas.height = video.videoHeight;
-		  canvas.getContext('2d').
-		    drawImage(video, 0, 0, canvas.width, canvas.height);
+	  canvas.width = video.videoWidth;
+	  canvas.height = video.videoHeight;
+	  canvas.getContext('2d').
+	    drawImage(video, 0, 0, canvas.width, canvas.height);
 
-		  var canvasData = canvas.toDataURL("image/png");
-		   
-		  var base64ImageContent = canvasData.replace(/^data:image\/(png|jpg);base64,/, "");
-		  var blob = base64ToBlob(base64ImageContent, 'image/png');
-		    var ajax = new XMLHttpRequest();
-		    ajax.open("POST",'https://api.projectoxford.ai/emotion/v1.0/recognize',false);
-		    ajax.onreadystatechange = function() {
-		    	var resObj = JSON.parse(ajax.responseText);
-		        console.log(resObj);
+	  var canvasData = canvas.toDataURL("image/png");
+	   
+	  var base64ImageContent = canvasData.replace(/^data:image\/(png|jpg);base64,/, "");
+	  var blob = base64ToBlob(base64ImageContent, 'image/png');
+	    var ajax = new XMLHttpRequest();
+	    ajax.open("POST",'https://api.projectoxford.ai/emotion/v1.0/recognize',false);
+	    ajax.onreadystatechange = function() {
+	    	var resObj = JSON.parse(ajax.responseText);
+	        console.log(resObj);
 
-		        mySocket.emit("image", 
-		        	{ name:$scope.user.name,
-		        	image: canvasData,
-		            result: resObj});
-		        document.getElementById("result").innerHTML = ajax.responseText;
-		    }
-		    ajax.setRequestHeader('Content-Type', 'application/octet-stream');
-		    ajax.setRequestHeader('Ocp-Apim-Subscription-Key', 'ccba260c28864adcb6624df03085ab49');
-		    ajax.send(blob);
+	        mySocket.emit("image", 
+	        	{ name:$scope.user.name,
+	        	image: canvasData,
+	            result: resObj});
+	        document.getElementById("result").innerHTML = ajax.responseText;
+	    }
+	    ajax.setRequestHeader('Content-Type', 'application/octet-stream');
+	    ajax.setRequestHeader('Ocp-Apim-Subscription-Key', 'ccba260c28864adcb6624df03085ab49');
+	    ajax.send(blob);
 
 	}
 });
