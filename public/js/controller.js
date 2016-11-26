@@ -7,67 +7,27 @@ app.factory('mySocket', function (socketFactory) {
 });
 
 app.controller("LeaderboardCtrl", function($scope, mySocket) {
-	// var data = [
-	// 	{name: "aaa",
-	//      URL: "http://placekitten.com/600/600",
-	//      score:"99"},
-	//     {name: "aaa",
-	//      URL: "http://placekitten.com/600/600",
-	//      score:"99"},
-	//      {name: "aaa",
-	//      URL: "http://placekitten.com/600/600",
-	//      score:"99"},
-	//      {name: "aaa",
-	//      URL: "http://placekitten.com/200/200",
-	//      score:"99"},
-	//      {name: "aaa",
-	//      URL: "http://placekitten.com/200/200",
-	//      score:"99"},
-	//      {name: "aaa",
-	//      URL: "http://placekitten.com/200/200",
-	//      score:"99"},
-	//      {name: "aaa",
-	//      URL: "http://placekitten.com/200/200",
-	//      score:"99"},
-	//      {name: "aaa",
-	//      URL: "http://placekitten.com/200/200",
-	//      score:"99"},
-	//      {name: "aaa",
-	//      URL: "http://placekitten.com/200/200",
-	//      score:"99"},
-	//      {name: "aaa",
-	//      URL: "http://placekitten.com/200/200",
-	//      score:"99"},
-	//      {name: "aaa",
-	//      URL: "http://placekitten.com/200/200",
-	//      score:"99"},
-	//      {name: "aaa",
-	//      URL: "http://placekitten.com/200/200",
-	//      score:"99"},
-	//      {name: "aaa",
-	//      URL: "http://placekitten.com/200/200",
-	//      score:"99"},
-
-	// ];
-	// $scope.leaders = data.slice(0,3);
-	// $scope.losers = data.slice(3,15);
+	$scope.limit = 9;
+	$scope.data;
 	mySocket.on("leaderboard", function(data) {
 		console.log(data);
 		data.sort((a,b) => b.value - a.value);
-		$scope.leaders = data.slice(0,3);
-		$scope.losers = data.slice(3,16);
+		$scope.data = data;
+		$scope.leaders = $scope.data.slice(0,3);
+		$scope.losers = $scope.data.slice(3,$scope.limit);
 	});
-});
 
-
-app.controller("CamCtrl", function($scope, mySocket) {
 	$scope.user = {name:"Anonymous"};
 
 	mySocket.on("hello", function(data) {
-		console.log("AAAA");
 		console.log (data);
 		$scope.test = data;
 	});
+
+	$scope.showMore = function() {
+		$scope.losers = $scope.data.slice(3,$scope.limit+6);
+		$scope.limit += 6;
+	}
 
 
 	$scope.snapshot = function() {
@@ -85,15 +45,16 @@ app.controller("CamCtrl", function($scope, mySocket) {
 	    ajax.onreadystatechange = function() {
 	    	var resObj = JSON.parse(ajax.responseText);
 	        console.log(resObj);
+	        var boredScore = parseInt(resObj[0].scores.neutral*10000);
+	        $scope.boredScore = boredScore;
 
 	        mySocket.emit("image", 
 	        	{ name:$scope.user.name,
 	        	image: canvasData,
-	            result: resObj});
-	        document.getElementById("result").innerHTML = ajax.responseText;
+	            result: boredScore});
 	    }
 	    ajax.setRequestHeader('Content-Type', 'application/octet-stream');
-	    ajax.setRequestHeader('Ocp-Apim-Subscription-Key', 'ccba260c28864adcb6624df03085ab49');
+	    ajax.setRequestHeader('Ocp-Apim-Subscription-Key', '5b3b98d70fa8466ca0e28426c8552ce7');
 	    ajax.send(blob);
 
 	}

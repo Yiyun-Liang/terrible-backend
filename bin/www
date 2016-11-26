@@ -64,6 +64,7 @@ io.on('connection', function(socket){
    });
 
    socket.on('image', function(obj){
+    console.log(JSON.stringify(obj));
      var img = obj.image;
      var userid = randomString();
      var username = obj.name;
@@ -76,7 +77,6 @@ io.on('connection', function(socket){
      fs.writeFile('public/images/' + userid + '.' + ext, buf);
      console.log('It\'s saved!');
 
-     var uservalue = userresult[0].scores.anger
 
      // save user data to database
      pg.connect(connectionString, function(err, client, done) {
@@ -88,13 +88,13 @@ io.on('connection', function(socket){
 
        // SQL Query > Insert Data
        client.query('INSERT INTO items(id, name, url, value, rank) values($1, $2, $3, $4, $5)',
-       [userid, username, 'images/' + userid + '.' + ext, uservalue, 1]);
+       [userid, username, 'images/' + userid + '.' + ext, userresult, 1]);
        // SQL Query > Select Data
-       //var query = client.query('SELECT * FROM items ORDER BY rank ASC');
+       var query = client.query('SELECT * FROM items ORDER BY rank ASC');
        // Stream results back one row at a time
 
        //query.on('row', function(row) {
-       results.push({id: userid, name: username, rank:1, url:'images/' + userid + '.' + ext, value:uservalue});
+       results.push({id: userid, name: username, rank:1, url:'images/' + userid + '.' + ext, value:userresult});
        //});
         // After all data is returned, close connection and return results
 

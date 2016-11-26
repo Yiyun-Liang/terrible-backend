@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="en" ng-app="terrible">
+<html lang="en" ng-app="terrible" ng-controller="LeaderboardCtrl as lbCt">
 <head>
   <meta charset="utf-8">
 
@@ -26,10 +26,8 @@
 
   <div class="container">
 
-
-
     <h1 class = "centered-text">Boring Leaderboard</h1>
-    <div ng-controller="LeaderboardCtrl as lbCt">
+    <div >
     <div class = "row">
     	<div class="col col-md-4 " ng-repeat="leader in leaders">
     	<div class = "center-block">
@@ -48,12 +46,13 @@
 			<p class = "centered-text">{{loser.value}}</p>
     	</div>
     </div>
+    <button ng-click="showMore()">Show More</button>
     </div>
     </div>
  
 
 <div class = "container">
-    <div ng-controller="CamCtrl as cCt">
+    <div >
     <div class = "row centered-text">
 
     <div class="form-group">
@@ -67,7 +66,7 @@
 	    
 	    
 	    <canvas class ="col col-md-6"></canvas>
-	     <p id="result">Result:</p>
+	     <p id="result">Boring Index: {{boredScore}}</p>
 	    <button ng-click="snapshot()">Take snapshot</button>
     </div>
 </div>
