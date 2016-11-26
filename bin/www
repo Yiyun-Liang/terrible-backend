@@ -46,8 +46,9 @@ console.log('It\'s saved!');
  */
 
 io.on('connection', function(socket){
-   console.log('a user connected');
-   socket.emit('hello', 'System Broadcast Message: a user has been connected');
+   var userid = socket.id
+   console.log('dummy user connected');
+   socket.emit('hello', 'System Broadcast Message: a dummy user has been connected');
    socket.on('disconnect', function(){
       console.log('user disconnected');
    });
@@ -57,7 +58,7 @@ io.on('connection', function(socket){
      var ext = img.split(';')[0].match(/jpeg|png|gif/)[0];
      var data = img.replace(/^data:image\/\w+;base64,/, "");
      var buf = new Buffer(data, 'base64');
-     fs.writeFile('public/images/image.' + ext, buf);
+     fs.writeFile('public/images/' + userid + '.' + ext, buf);
      console.log('It\'s saved!');
    });
 });
