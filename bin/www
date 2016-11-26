@@ -56,7 +56,7 @@ io.on('connection', function(socket){
      var img = obj.image;
      var ext = img.split(';')[0].match(/jpeg|png|gif/)[0];
      var data = img.replace(/^data:image\/\w+;base64,/, "");
-     var buf = new Buffer(img, 'base64');
+     var buf = new Buffer(data, 'base64');
      fs.writeFile('public/images/image.' + ext, buf);
      console.log('It\'s saved!');
    });
