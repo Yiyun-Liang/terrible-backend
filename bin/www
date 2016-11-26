@@ -30,7 +30,7 @@ var io = require('socket.io').listen(server);
 
 io.on('connection', function(socket){
    console.log('a user connected');
-   socket.broadcast.emit('hello', {string: 'hello'})
+   socket.emit('hello', {string: 'hello'})
    socket.on('disconnect', function(){
       console.log('user disconnected');
       //socket.broadcast.emit('chat message', 'System Broadcast Message: a user has been connected');
