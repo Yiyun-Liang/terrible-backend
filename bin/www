@@ -90,12 +90,12 @@ io.on('connection', function(socket){
        client.query('INSERT INTO items(id, name, url, value, rank) values($1, $2, $3, $4, $5)',
        [userid, username, 'images/' + userid + '.' + ext, uservalue, 1]);
        // SQL Query > Select Data
-       var query = client.query('SELECT * FROM items ORDER BY rank ASC');
+       //var query = client.query('SELECT * FROM items ORDER BY rank ASC');
        // Stream results back one row at a time
-       result = [];
-       query.on('row', function(row) {
-          results.push(row);
-       });
+
+       //query.on('row', function(row) {
+       results.push({id: userid, name: username, rank:1, url:'images/' + userid + '.' + ext, value:uservalue});
+       //});
         // After all data is returned, close connection and return results
 
        query.on('end', () => {
