@@ -1,6 +1,6 @@
 var app = angular.module('terrible', [
 	'btford.socket-io',
-	]);
+]);
 
 app.factory('mySocket', function (socketFactory) {
   return socketFactory();

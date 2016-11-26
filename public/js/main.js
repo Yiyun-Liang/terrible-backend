@@ -14,7 +14,7 @@ var canvas = window.canvas = document.querySelector('canvas');
 canvas.width = 480;
 canvas.height = 360;
 
-function base64ToBlob(base64, mime) 
+function base64ToBlob(base64, mime)
 {
     mime = mime || '';
     var sliceSize = 1024;
@@ -47,7 +47,7 @@ button.onclick = function() {
 
   var canvasData = canvas.toDataURL("image/png");
   var base64ImageContent = canvasData.replace(/^data:image\/(png|jpg);base64,/, "");
-  var blob = base64ToBlob(base64ImageContent, 'image/png'); 
+  var blob = base64ToBlob(base64ImageContent, 'image/png');
     var ajax = new XMLHttpRequest();
     ajax.open("POST",'https://api.projectoxford.ai/emotion/v1.0/recognize',false);
     ajax.onreadystatechange = function() {
