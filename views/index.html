@@ -34,7 +34,7 @@
 			<h2 class = "centered-text">1</h2>
 			<h2 class = "centered-text">{{leaders[0].name}}</h2>
 			<div class = "containerdiv">
-				<img ng-src="https://127.0.0.1:3000/{{leaders[0].url}}"/>
+				<img ng-src="http://127.0.0.1:3000/{{leaders[0].url}}"/>
 				<img class="cornerimage" src="icons/gold_medal.png"/>
 			</div>
 			<p class = "centered-text">{{leaders[0].value}}</p>
@@ -45,7 +45,7 @@
 			<h2 class = "centered-text">2</h2>
 			<h2 class = "centered-text">{{leaders[1].name}}</h2>
 			<div class = "containerdiv">
-				<img ng-src="https://127.0.0.1:3000/{{leaders[1].url}}"/>
+				<img ng-src="http://127.0.0.1:3000/{{leaders[1].url}}"/>
 				<img class="cornerimage" src="icons/silver_medal.png"/>
 			</div>
 			<p class = "centered-text">{{leaders[1].value}}</p>
@@ -56,7 +56,7 @@
 			<h2 class = "centered-text">3</h2>
 			<h2 class = "centered-text">{{leaders[2].name}}</h2>
 			<div class = "containerdiv">
-				<img ng-src="https://127.0.0.1:3000/{{leaders[2].url}}"/>
+				<img ng-src="http://127.0.0.1:3000/{{leaders[2].url}}"/>
 				<img class="cornerimage" src="icons/bronze_medal.png"/>
 			</div>
 			<p class = "centered-text">{{leaders[2].value}}</p>
@@ -67,7 +67,7 @@
     	<div class="col col-md-2 center-block" ng-repeat="loser in losers">
 			<h4 class = "centered-text">{{$index + 4}}</h4>
 			<h4 class = "centered-text">{{loser.name}}</h4>
-			<img ng-src="https://127.0.0.1:3000/{{loser.url}}"/>
+			<img ng-src="http://127.0.0.1:3000/{{loser.url}}"/>
 			<p class = "centered-text">{{loser.value}}</p>
     	</div>
     </div>
