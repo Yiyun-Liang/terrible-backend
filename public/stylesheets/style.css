@@ -116,6 +116,19 @@ button[disabled]:hover {
 background-color: #d84a38;
 }
 
+.containerdiv {
+  border: 0;
+  float: left;
+  position: relative;
+} 
+
+.cornerimage {
+  border: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+ } 
+
 canvas {
   background-color: #ccc;
   /*max-width: 100%;*/
