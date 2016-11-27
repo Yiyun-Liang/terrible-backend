@@ -1,4 +1,4 @@
-# Terrible Faces
+# Y R U SO BORING
 
 Made for Terrible Hack on Nov 26, 2016
 
